@@ -1,0 +1,33 @@
+#!/bin/bash
+# Description:
+# Usage:
+# License:
+# Source:
+# TODO optimize
+
+set -o errexit
+set -o nounset
+
+log_path="/var/log/debsecan"
+
+mkdir -p "$log_path"
+chown -R root:adm "$log_path"
+chmod -R u=rwX,g=rX "$log_path"
+
+output=$(/usr/bin/debsecan)
+high_remote=$(echo "$output" | grep 'high urgency' | grep 'remotely exploitable')
+high_local=$(echo "$output" | grep 'high urgency' | grep -v 'remotely exploitable')
+medium_remote=$(echo "$output" | grep 'medium urgency' | grep 'remotely exploitable')
+medium_local=$(echo "$output" | grep 'medium urgency' | grep -v 'remotely exploitable')
+low_remote=$(echo "$output" | grep 'low urgency' | grep 'remotely exploitable')
+low_local=$(echo "$output" | grep 'low urgency' | grep -v 'remotely exploitable')
+other=$(echo "$output" | grep -v 'urgency')
+
+echo "$output" > "$log_path/debsecan.log"
+echo "$high_remote" > "$log_path/debsecan_high_remote.log"
+echo "$high_local" > "$log_path/debsecan_high_local.log"
+echo "$medium_remote" > "$log_path/debsecan_medium_remote.log"
+echo "$medium_local" > "$log_path/debsecan_medium_local.log"
+echo "$low_remote" > "$log_path/debsecan_low_remote.log"
+echo "$low_local" > "$log_path/debsecan_low_local.log"
+echo "$other" > "$log_path/debsecan_other.log"
