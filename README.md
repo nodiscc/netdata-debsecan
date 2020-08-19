@@ -34,8 +34,10 @@ cp netdata-debsecan/etc_apt_apt.conf.d_99debsecan /etc/apt/apt.conf.d/99debsecan
 cp netdata-debsecan/etc_cron.d_debsecan /etc/cron.d/debsecan
 
 # install the module/configuration file
-cp netdata-debsecan/debsecan.chart.py /opt/netdata/usr/libexec/netdata/python.d/
-cp netdata-debsecan/debsecan.conf /opt/netdata/etc/netdata/python.d/
+netdata_install_prefix="/opt/netdata" # if netdata is installed from binary/.run script
+netdata_install_prefix="" # if netdata is installed from OS packages
+cp netdata-debsecan/debsecan.chart.py $netdata_install_prefix/usr/libexec/netdata/python.d/
+cp netdata-debsecan/debsecan.conf $netdata_install_prefix/etc/netdata/python.d/
 
 # restart netdata
 systemctl restart netdata
@@ -59,7 +61,7 @@ To debug this module:
 
 ```bash
 $ sudo su -s /bin/bash netdata
-$ /opt/netdata/usr/libexec/netdata/plugins.d/python.d.plugin 1  debug trace debsecan
+$ $netdata_install_prefix/usr/libexec/netdata/plugins.d/python.d.plugin 1  debug trace debsecan
 ```
 
 ## TODO
