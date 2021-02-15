@@ -31,3 +31,5 @@ echo "$medium_local" > "$log_path/debsecan_medium_local.log"
 echo "$low_remote" > "$log_path/debsecan_low_remote.log"
 echo "$low_local" > "$log_path/debsecan_low_local.log"
 echo "$other" > "$log_path/debsecan_other.log"
+
+chgrp -R netdata /var/log/debsecan/
