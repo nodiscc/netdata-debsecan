@@ -24,10 +24,11 @@ git clone https://gitlab.com/nodiscc/netdata-debsecan
 # install the generation script
 cp netdata-debsecan/usr_local_bin_debsecan-by-type /usr/local/bin/debsecan-by-type
 
-# generate the initial file
+# generate initial debsecan reports in /var/log/debsecan/
 /usr/local/bin/debsecan-by-type
 
-# configure dpkg to refresh the file after each run
+# (optional) configure dpkg to refresh the file after each run
+# generating reports after each apt/dpkg run can take some time
 cp netdata-debsecan/etc_apt_apt.conf.d_99debsecan /etc/apt/apt.conf.d/99debsecan
 
 # add a cron job to refresh the file every hour
