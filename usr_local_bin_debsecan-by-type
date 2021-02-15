@@ -15,13 +15,13 @@ chown -R root:adm "$log_path"
 chmod -R u=rwX,g=rX "$log_path"
 
 output=$(/usr/bin/debsecan)
-high_remote=$(echo "$output" | grep 'high urgency' | grep 'remotely exploitable')
-high_local=$(echo "$output" | grep 'high urgency' | grep -v 'remotely exploitable')
-medium_remote=$(echo "$output" | grep 'medium urgency' | grep 'remotely exploitable')
-medium_local=$(echo "$output" | grep 'medium urgency' | grep -v 'remotely exploitable')
-low_remote=$(echo "$output" | grep 'low urgency' | grep 'remotely exploitable')
-low_local=$(echo "$output" | grep 'low urgency' | grep -v 'remotely exploitable')
-other=$(echo "$output" | grep -v 'urgency')
+high_remote=$(echo "$output" | grep 'high urgency' | grep 'remotely exploitable' || true)
+high_local=$(echo "$output" | grep 'high urgency' | grep -v 'remotely exploitable' || true)
+medium_remote=$(echo "$output" | grep 'medium urgency' | grep 'remotely exploitable' || true)
+medium_local=$(echo "$output" | grep 'medium urgency' | grep -v 'remotely exploitable' || true)
+low_remote=$(echo "$output" | grep 'low urgency' | grep 'remotely exploitable' || true)
+low_local=$(echo "$output" | grep 'low urgency' | grep -v 'remotely exploitable' || true)
+other=$(echo "$output" | grep -v 'urgency' || true)
 
 echo "$output" > "$log_path/debsecan.log"
 echo "$high_remote" > "$log_path/debsecan_high_remote.log"
