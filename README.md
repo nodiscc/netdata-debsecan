@@ -45,6 +45,8 @@ systemctl restart netdata
 
 ```
 
+You can also install this module using the [`nodiscc.xsrv.monitoring` ansible role](https://gitlab.com/nodiscc/xsrv/-/tree/master/roles/monitoring).
+
 
 ## Configuration
 
