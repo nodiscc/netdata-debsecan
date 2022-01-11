@@ -111,4 +111,4 @@ def line_count(filename):
     with open(filename) as file:
         for index, line in enumerate(file):
             pass
-    return index + 1
+    return index
