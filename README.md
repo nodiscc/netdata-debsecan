@@ -2,7 +2,7 @@
 
 Check/graph the number [CVE](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures)s in currently installed packages.
 
-![](https://i.imgur.com/OIu846o.png)
+![](https://gitlab.com/nodiscc/toolbox/-/raw/master/DOC/SCREENSHOTS/OIu846o.png)
 
 This is a `python.d` module for [netdata](https://my-netdata.io/). It parses output from [debsecan](https://manpages.debian.org/stretch/debsecan/debsecan.1.en.html)
 
